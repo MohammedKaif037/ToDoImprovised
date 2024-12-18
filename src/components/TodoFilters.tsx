@@ -11,7 +11,7 @@ interface TodoFiltersProps {
   onTagFilterChange: (tag: string) => void;
   availableTags: string[];
   projectFilter: string;
-  onProjectFilterChange: (projectId: string) => void;
+  onProjectFilterChange: (project: string) => void;
   projects: Project[];
 }
 
