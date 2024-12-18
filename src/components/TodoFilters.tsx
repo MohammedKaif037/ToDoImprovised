@@ -1,5 +1,6 @@
 import React from 'react';
 import { Search, Filter } from 'lucide-react';
+import { Project } from '../types/todo';
 
 interface TodoFiltersProps {
   search: string;
@@ -9,6 +10,9 @@ interface TodoFiltersProps {
   tagFilter: string;
   onTagFilterChange: (tag: string) => void;
   availableTags: string[];
+  projectFilter: string;
+  onProjectFilterChange: (projectId: string) => void;
+  projects: Project[];
 }
 
 export function TodoFilters({
@@ -19,6 +23,9 @@ export function TodoFilters({
   tagFilter,
   onTagFilterChange,
   availableTags,
+  projectFilter,
+  onProjectFilterChange,
+  projects,
 }: TodoFiltersProps) {
   return (
     <div className="bg-white p-4 rounded-lg shadow-md space-y-4">
@@ -65,6 +72,25 @@ export function TodoFilters({
             {availableTags.map((tag) => (
               <option key={tag} value={tag}>
                 {tag}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="flex-1">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            <Filter className="inline h-4 w-4 mr-1" />
+            Project
+          </label>
+          <select
+            value={projectFilter}
+            onChange={(e) => onProjectFilterChange(e.target.value)}
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">All</option>
+            {projects.map((project) => (
+              <option key={project.id} value={project.id}>
+                {project.name}
               </option>
             ))}
           </select>
